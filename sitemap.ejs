@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <%
+  var d = new Date();
+  var current_iso_time = d.toISOString();
+  var site_uri = encodeURI(config.url) + encodeURI(config.root);
+  var news_uri = site_uri + 'categories/news/';
+  %>
+  <url>
+    <loc><%= site_uri %></loc>
+    <changefreq>daily</changefreq>
+    <priority>1</priority>
+    <lastmod><%= current_iso_time %></lastmod>
+  </url>
+    <% categories.forEach(function(category){ %>
+  <url>
+    <loc><%- encodeURI(category.permalink) %></loc>
+    <lastmod><%= category.updated.toISOString() %></lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+    <% }) %>
+  <% posts.forEach( function( post ){ 
+    // пропустить генерацию записи sitemap для 404
+    if ( post.title === '404' ) {
+      return;
+    }
+    // пропустить генерацию записи sitemap для main (титульная страница)
+    if ( post.title === 'main' ) {
+      return;
+    }
+    var uri = encodeURI( post.permalink.replace('index.html', '') );
+    var priority = ( post.layout === 'post' ) ? 0.6 : 0.8;
+  %>
+  <url>
+    <loc><%= uri %></loc>
+    <lastmod><%= post.updated.toISOString() || post.date.toISOString() %></lastmod>
+    <changefreq>weekly</changefreq>
+    <priority><%= priority %></priority>
+  </url>
+  <% }) %>
+  <% tags.forEach(function(tag){ %>
+  <url>
+    <loc><%- encodeURI(tag.permalink) %></loc>
+    <lastmod><%= tag.updated.toISOString() %></lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <% }) %>
+</urlset>

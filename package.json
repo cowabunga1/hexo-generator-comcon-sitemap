@@ -1,0 +1,35 @@
+{
+  "name": "hexo-generator-comcon-sitemap",
+  "version": "1.0.0",
+  "description": "Sitemap generator plugin for Hexo. Comcon edition.",
+  "main": "index",
+  "directories": {
+    "lib": "./lib"
+  },
+  "engines": {
+    "node": ">= 4.4.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cowabunga1/hexo-generator-comcon-sitemap.git"
+  },
+  "keywords": [
+    "hexo",
+    "sitemap",
+    "seo",
+    "generator",
+    "comcon"
+  ],
+  "author": {
+    "name": "Comcon Ltd.",
+    "email": "info@comcon.pro",
+    "url": "http://www.comcon.pro"
+  },
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "ejs": "1.0.0",
+    "utils-merge": "1.0.0",
+    "bluebird": "2.10.2",
+    "lodash": "3.10.1"
+  }
+}
